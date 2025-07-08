@@ -44,6 +44,7 @@ The **Food Tracker System** allows users to:
 - **Farmer-motion**
 - **axios.js**
 - **Tailwind CSS**
+- **Swiper js**
 - **React Icons**
 - **SweetAlert2**
 
