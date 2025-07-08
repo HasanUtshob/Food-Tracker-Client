@@ -23,8 +23,7 @@ const FoodDetails = () => {
         // console.log(response.data);
         setShowNoteBox(false);
         window.location.reload();
-      })
-      .catch((error) => console.error("Error adding note:", error));
+      });
   };
 
   // Countdown Renderer
