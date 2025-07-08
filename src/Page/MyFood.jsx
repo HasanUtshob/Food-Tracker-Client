@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 const MyFood = () => {
   const { User } = React.useContext(AuthContext);
   const token = User?.accessToken;
-  console.log(token);
+  // console.log(token);
   const [myFood, setMyFood] = useState([]);
   const [selectedFood, setSelectedFood] = useState(null);
 
