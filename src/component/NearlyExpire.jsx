@@ -9,7 +9,6 @@ const NearlyExpire = () => {
   useEffect(() => {
     const loadFood = async () => {
       const res = await axios.get("http://localhost:3000/nearly-expire");
-      console.log("Data from API:", res.data);
       setfoods(res.data);
     };
     loadFood();
