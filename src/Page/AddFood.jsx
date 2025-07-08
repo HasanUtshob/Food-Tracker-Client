@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 const AddFood = () => {
   const { userData, User } = use(AuthContext);
   const [today, settoday] = useState(format(new Date(), "yyyy-MM-dd"));
-  console.log(settoday);
+  // console.log(settoday);
   const handleAddFood = (e) => {
     e.preventDefault();
     const form = e.target;
