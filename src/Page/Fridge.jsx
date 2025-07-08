@@ -46,7 +46,7 @@ const Fridge = () => {
     <div className="w-11/12 md:w-10/12 mx-auto">
       {/* Header */}
       <section className="text-center mt-10 mb-6">
-        <h1 className="text-3xl md:text-4xl font-bold">All Foods </h1>
+        <h1 className="text-3xl md:text-4xl font-bold">All Foods 🥗</h1>
       </section>
       <section className="flex justify-between">
         <select
