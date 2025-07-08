@@ -1,12 +1,75 @@
-# React + Vite
+# 🍽️ Food Tracker System (NutriTrack)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack web application to help users manage, track, and monitor their food items, including expiration dates, categories, and personal notes.
 
-Currently, two official plugins are available:
+## 🌐 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+👉 [View Live Project](https://your-live-site-url.com)
 
-## Expanding the ESLint configuration
+_(Replace this with your actual deployed URL)_
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🎯 Purpose
+
+The **Food Tracker System** allows users to:
+
+- Add food items with images, categories, quantity, and expiration dates.
+- View, edit, and delete their own food entries.
+- Receive visual alerts for expired or soon-to-expire foods.
+- Search and filter foods by category or title.
+- Secure their data through authentication (Firebase JWT).
+
+---
+
+## 🚀 Key Features
+
+✅ User Registration & Login (Firebase Authentication)  
+✅ JWT-secured RESTful APIs with role-based protection  
+✅ Add, Edit, Delete Food Items  
+✅ Category-wise Food Filtering  
+✅ Search Functionality (Title or Category)  
+✅ Expiry Date Alerts (Expired & Nearly Expiring)  
+✅ Responsive & Clean UI (Mobile & Desktop friendly)  
+✅ SweetAlert2 notifications for actions
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend:
+
+- **React.js**
+- **React-router**
+- **Farmer-motion**
+- **axios.js**
+- **Tailwind CSS**
+- **React Icons**
+- **SweetAlert2**
+
+### Backend:
+
+- **Node.js**
+- **Express.js**
+- **MongoDB Atlas**
+- **Firebase Admin SDK (for token verification)**
+
+---
+
+## 📦 NPM Packages Used
+
+```bash
+axios
+react-router-dom
+firebase
+sweetalert2
+date-fns
+react-icons
+dotenv
+express
+cors
+mongodb
+firebase-admin
+```
+
+Healthy food healthy life.
