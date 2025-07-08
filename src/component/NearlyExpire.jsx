@@ -5,7 +5,6 @@ import { Link } from "react-router";
 
 const NearlyExpire = () => {
   const [foods, setfoods] = useState([]);
-  console.log(foods);
   useEffect(() => {
     const loadFood = async () => {
       const res = await axios.get("http://localhost:3000/nearly-expire");
