@@ -60,7 +60,7 @@ const AuthProvider = ({ children }) => {
     if (email) {
       const loadData = async () => {
         const res = await axios.get(
-          `http://localhost:3000/users?email=${email}`,
+          `https://food-tracker-server-six.vercel.app/users?email=${email}`,
           {
             headers: {
               Authorization: `Bearer ${User?.accessToken}`,

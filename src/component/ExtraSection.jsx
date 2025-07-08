@@ -13,14 +13,18 @@ const ExtraSection = () => {
   useEffect(() => {
     // Load Expiring Soon Foods (3 days)
     const loadExpiringFoods = async () => {
-      const res = await axios.get("http://localhost:3000/expiring-soon");
+      const res = await axios.get(
+        "https://food-tracker-server-six.vercel.app/expiring-soon"
+      );
       setExpiringFoods(res.data);
       setloading(false);
     };
 
     // Load Statistics
     const loadStats = async () => {
-      const res = await axios.get("http://localhost:3000/food-stats");
+      const res = await axios.get(
+        "https://food-tracker-server-six.vercel.app/food-stats"
+      );
       setStats(res.data);
       setloading(false);
     };

@@ -34,19 +34,21 @@ const Registration = () => {
           creationTime: result.user?.metadata?.creationTime,
           lastSignInTime: result.user?.metadata?.lastSignInTime,
         };
-        axios.post("http://localhost:3000/users", userInfo).then((data) => {
-          if (data.data.insertedId) {
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Account Created Successfully",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-          }
-          // console.log(data.data);
-          // console.log(result);
-        });
+        axios
+          .post("https://food-tracker-server-six.vercel.app/users", userInfo)
+          .then((data) => {
+            if (data.data.insertedId) {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Account Created Successfully",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
+            // console.log(data.data);
+            // console.log(result);
+          });
       })
       .catch((error) => {
         console.log(error);

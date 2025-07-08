@@ -32,11 +32,15 @@ const Login = () => {
         lastSignInTime: result.user?.metadata?.lastSignInTime,
       };
 
-      await axios.patch("http://localhost:3000/users", userInfo, {
-        headers: {
-          Authorization: `Bearer ${User?.accessToken}`,
-        },
-      });
+      await axios.patch(
+        "https://food-tracker-server-six.vercel.app/users",
+        userInfo,
+        {
+          headers: {
+            Authorization: `Bearer ${User?.accessToken}`,
+          },
+        }
+      );
     } catch (error) {
       console.error("Login failed:", error);
     }
@@ -54,11 +58,15 @@ const Login = () => {
           creationTime: result.user?.metadata?.creationTime,
           photo: result.user?.photoURL,
         };
-        axios.post("http://localhost:3000/users", userInfo, {
-          headers: {
-            Authorization: `Bearer ${User?.accessToken}`,
-          },
-        });
+        axios.post(
+          "https://food-tracker-server-six.vercel.app/users",
+          userInfo,
+          {
+            headers: {
+              Authorization: `Bearer ${User?.accessToken}`,
+            },
+          }
+        );
       })
       .catch((error) => console.log(error));
   };

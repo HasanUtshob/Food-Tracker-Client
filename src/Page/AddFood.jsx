@@ -17,7 +17,7 @@ const AddFood = () => {
 
     // send info database
     axios
-      .post("http://localhost:3000/foods", AddFood, {
+      .post("https://food-tracker-server-six.vercel.app/foods", AddFood, {
         headers: {
           Authorization: `Bearer ${User?.accessToken}`,
         },

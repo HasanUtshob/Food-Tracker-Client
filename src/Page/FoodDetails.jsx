@@ -18,7 +18,10 @@ const FoodDetails = () => {
     const form = { note };
 
     axios
-      .post(`http://localhost:3000/fooddetails/${data._id}`, form)
+      .post(
+        `https://food-tracker-server-six.vercel.app/fooddetails/${data._id}`,
+        form
+      )
       .then((response) => {
         // console.log(response.data);
         setShowNoteBox(false);

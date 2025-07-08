@@ -8,7 +8,9 @@ const ExpiredFoods = () => {
   const { loading, setloading } = use(AuthContext);
   useEffect(() => {
     const expireFood = async () => {
-      const res = await axios.get("http://localhost:3000/nearly-expire");
+      const res = await axios.get(
+        "https://food-tracker-server-six.vercel.app/nearly-expire"
+      );
       setexpireDate(res.data);
       setloading(false);
     };

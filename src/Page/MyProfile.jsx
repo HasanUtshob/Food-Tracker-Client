@@ -17,7 +17,7 @@ const MyProfile = () => {
     const email = User?.email;
     if (email) {
       const res = await axios.get(
-        `http://localhost:3000/users?email=${email}`,
+        `https://food-tracker-server-six.vercel.app/users?email=${email}`,
         {
           headers: { Authorization: `Bearer ${User?.accessToken}` },
         }
@@ -38,7 +38,7 @@ const MyProfile = () => {
 
     try {
       const { data } = await axios.put(
-        `http://localhost:3000/users/${id}`,
+        `https://food-tracker-server-six.vercel.app/users/${id}`,
         ProfileUpdate,
         {
           headers: { Authorization: `Bearer ${User?.accessToken}` },
