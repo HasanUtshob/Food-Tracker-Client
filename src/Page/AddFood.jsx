@@ -23,7 +23,7 @@ const AddFood = () => {
         },
       })
       .then((data) => {
-        console.log(data.data);
+        // console.log(data.data);
         if (data.data.insertedId) {
           Swal.fire({
             position: "top-end",
