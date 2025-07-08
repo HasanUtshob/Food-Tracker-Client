@@ -16,7 +16,7 @@ const Login = () => {
 
     try {
       const result = await handleSignIn(email, password);
-      console.log(result);
+      // console.log(result);
       const from = location.state?.from?.pathname || "/";
       navigate(from, { replace: true });
       Swal.fire({
