@@ -20,7 +20,7 @@ const FoodDetails = () => {
     axios
       .post(`http://localhost:3000/fooddetails/${data._id}`, form)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setShowNoteBox(false);
         window.location.reload();
       })
