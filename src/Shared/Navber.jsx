@@ -75,7 +75,6 @@ const Navber = () => {
                 "#1d51c8",
                 "#9a52e3",
                 "#d852e3",
-                "#d8398d",
               ],
               transition: { duration: 4, repeat: Infinity },
             }}
