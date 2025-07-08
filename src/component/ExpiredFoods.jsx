@@ -6,7 +6,6 @@ import Loading from "./Loading";
 const ExpiredFoods = () => {
   const [expireDate, setexpireDate] = useState([]);
   const { loading, setloading } = use(AuthContext);
-  console.log(expireDate);
   useEffect(() => {
     const expireFood = async () => {
       const res = await axios.get("http://localhost:3000/nearly-expire");
