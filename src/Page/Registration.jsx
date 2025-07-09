@@ -1,15 +1,17 @@
-import React, { use, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { motion } from "framer-motion";
 
 const Registration = () => {
-  const { handleRegister } = use(AuthContext);
-  const [errorMassage, seterrorMassage] = useState("");
+  const { handleRegister } = useContext(AuthContext);
+  const [errorMassage, setErrorMassage] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
-  const handleregform = (e) => {
+
+  const handleRegForm = (e) => {
     e.preventDefault();
 
     const form = e.target;
@@ -19,25 +21,26 @@ const Registration = () => {
     );
 
     const regextest = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{6,}$/;
-    if (regextest.test(password) === false) {
-      seterrorMassage(
-        "Password must have at least One UpperCase One LowerCase Use at least One Special Charecter & more then 6 longer"
+
+    if (!regextest.test(password)) {
+      setErrorMassage(
+        "Password must have at least 1 uppercase, 1 lowercase, 1 special character & 6+ characters."
       );
       return;
     }
-    // firebase verify
 
     handleRegister(email, password)
       .then((result) => {
-        // send userinfo database
         const from = location.state?.from?.pathname || "/";
         navigate(from, { replace: true });
+
         const userInfo = {
           email,
           ...restFormData,
           creationTime: result.user?.metadata?.creationTime,
           lastSignInTime: result.user?.metadata?.lastSignInTime,
         };
+
         axios
           .post("https://food-tracker-server-six.vercel.app/users", userInfo)
           .then((data) => {
@@ -45,146 +48,152 @@ const Registration = () => {
               Swal.fire({
                 position: "top-end",
                 icon: "success",
-                title: "Account Created Successfully",
+                title: "Account Created Successfully!",
                 showConfirmButton: false,
                 timer: 1500,
               });
             }
-            // console.log(data.data);
-            // console.log(result);
           });
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
+        Swal.fire({
+          icon: "error",
+          title: "Something went wrong!",
+          text: error.message,
+        });
       });
   };
+
   return (
-    <div className="relative py-3 sm:max-w-xl sm:mx-auto">
-      <div className="relative px-4 py-10 mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
-        <div className="max-w-md mx-auto text-white">
-          <form onSubmit={handleregform}>
-            <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <div>
-                <label
-                  className="font-semibold text-sm text-gray-400 pb-1 block"
-                  htmlFor="fullname"
-                >
-                  Full Name
-                </label>
-                <input
-                  className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full  text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
-                  type="text"
-                  id="fullname"
-                  name="name"
-                  placeholder="Enter Your Full name"
-                />
-              </div>
-              <div>
-                <label
-                  className="font-semibold text-sm text-gray-400 pb-1 block"
-                  htmlFor="email"
-                >
-                  Email
-                </label>
-                <input
-                  className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full  text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="Enter Your Email"
-                />
-              </div>
-              <div>
-                <label
-                  className="font-semibold text-sm text-gray-400 pb-1 block"
-                  htmlFor="photourl"
-                >
-                  Photo Url
-                </label>
-                <input
-                  className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full  text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
-                  type="text"
-                  id="photourl"
-                  name="photo"
-                  placeholder="Enter your Photo Url"
-                />
-              </div>
-              <div>
-                <label
-                  className="font-semibold text-sm text-gray-400 pb-1 block"
-                  htmlFor="password"
-                >
-                  Password
-                </label>
-                <input
-                  className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full  text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
-                  type="password"
-                  id="password"
-                  name="password"
-                  placeholder="Password"
-                />
-                <p className="text-red-500 text-sm">{errorMassage}</p>
-              </div>
+    <motion.div
+      className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-100 via-pink-100 to-purple-100 px-6 py-12"
+      initial={{ opacity: 0, y: -30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+    >
+      <motion.div
+        className="max-w-2xl w-full bg-white p-10 rounded-3xl shadow-2xl"
+        initial={{ scale: 0.95 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.6 }}
+      >
+        <h2 className="text-3xl font-bold text-center text-gray-700 mb-8">
+          🚀 Create Your Account
+        </h2>
+
+        <form onSubmit={handleRegForm} className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-1">
+                Full Name
+              </label>
+              <input
+                type="text"
+                name="name"
+                placeholder="Your Full Name"
+                required
+                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+              />
             </div>
-            <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <div>
-                <label
-                  className="font-semibold text-sm text-gray-400 pb-1 block"
-                  htmlFor="dob"
-                >
-                  Date of Birth
-                </label>
-                <input
-                  className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full  text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
-                  type="date"
-                  id="dob"
-                  name="dob"
-                />
-              </div>
-              <div>
-                <label
-                  className="font-semibold text-sm text-gray-400 pb-1 block"
-                  htmlFor="gender"
-                >
-                  Gender
-                </label>
-                <select
-                  className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
-                  id="gender"
-                  name="gender"
-                >
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-1">
+                Email
+              </label>
+              <input
+                type="email"
+                name="email"
+                placeholder="you@example.com"
+                required
+                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+              />
             </div>
-            <div className="flex  items-center gap-1.5">
-              <input type="checkbox" name="" id="" />
-              <span className="text-black ml-2">Accept terms & Condition</span>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-1">
+                Photo URL
+              </label>
+              <input
+                type="text"
+                name="photo"
+                placeholder="Profile Photo Link"
+                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+              />
             </div>
-            <div className="my-5">
-              <button
-                className="py-2 px-4 bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-                type="submit"
+
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-1">
+                Password
+              </label>
+              <input
+                type="password"
+                name="password"
+                placeholder="Create a strong password"
+                required
+                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+              />
+              {errorMassage && (
+                <p className="text-red-500 text-sm mt-1">{errorMassage}</p>
+              )}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-1">
+                Date of Birth
+              </label>
+              <input
+                type="date"
+                name="dob"
+                required
+                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-1">
+                Gender
+              </label>
+              <select
+                name="gender"
+                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+                required
               >
-                Sign up
-              </button>
+                <option value="">Select Gender</option>
+                <option value="male">Male ♂️</option>
+                <option value="female">Female ♀️</option>
+                <option value="other">Other 🌈</option>
+              </select>
             </div>
-          </form>
-          <div className="flex items-center justify-between mt-4">
-            <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
-            <Link
-              className="text-xs text-gray-500 uppercase dark:text-gray-400 hover:underline"
-              to="/login"
-            >
-              have an account? Log in
-            </Link>
-            <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
           </div>
+
+          <div className="flex items-center gap-2 mt-3">
+            <input type="checkbox" required />
+            <span className="text-gray-700 text-sm">
+              I agree to the terms & conditions
+            </span>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transform hover:scale-105 transition"
+          >
+            Sign Up
+          </button>
+        </form>
+
+        <div className="flex items-center justify-between mt-6 text-sm">
+          <span className="w-1/5 border-b border-gray-300"></span>
+          <Link
+            to="/login"
+            className="text-gray-600 hover:text-blue-600 font-medium"
+          >
+            Already have an account? Log In
+          </Link>
+          <span className="w-1/5 border-b border-gray-300"></span>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
