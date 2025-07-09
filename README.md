@@ -4,7 +4,7 @@ A full-stack web application to help users manage, track, and monitor their food
 
 ## 🌐 Live Demo
 
-👉 [View Live Project](https://your-live-site-url.com)
+👉 [View Live Project](https://nutritrack-app-72ddb.web.app/)
 
 _(Replace this with your actual deployed URL)_
 
