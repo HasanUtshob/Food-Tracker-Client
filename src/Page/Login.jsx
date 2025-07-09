@@ -87,6 +87,7 @@ const Login = () => {
                 type="text"
                 id="login"
                 name="email"
+                placeholder="Enter Your Email"
               />
               <label
                 className="font-semibold text-sm text-gray-600 pb-1 block"
@@ -99,6 +100,7 @@ const Login = () => {
                 type="password"
                 id="password"
                 name="password"
+                placeholder="Enter Your Password"
               />
             </div>
             <div className="text-right mb-4">

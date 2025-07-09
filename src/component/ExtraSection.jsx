@@ -36,30 +36,32 @@ const ExtraSection = () => {
   if (loading) return <Loading></Loading>;
 
   return (
-    <div className="w-11/12 md:w-10/12 mx-auto my-10">
+    <div className="w-11/12 md:w-10/12 mx-auto my-12">
       {/* Section 1: Expiring Soon */}
-      <h2 className="text-3xl font-bold mb-6 text-center">
+      <h2 className="text-4xl font-extrabold mb-8 text-center text-yellow-700 drop-shadow-md">
         ⏳ Expiring Soon (Next 3 Days)
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
         {expiringFoods.map((food, index) => (
           <motion.div
             key={food._id}
-            className="p-4 bg-yellow-50 border border-yellow-200 rounded-xl shadow-lg"
-            initial={{ opacity: 0, y: 50 }}
+            className="p-5 bg-yellow-100 border border-yellow-300 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300"
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1, duration: 0.5 }}
           >
             <img
               src={food.FoodImage}
               alt={food.FoodTitle}
-              className="h-32 w-full object-cover rounded mb-2"
+              className="h-36 w-full object-cover rounded-xl mb-3 shadow-md"
             />
-            <h3 className="font-semibold text-lg">{food.FoodTitle}</h3>
-            <p className="text-sm text-gray-600">
+            <h3 className="font-semibold text-xl text-yellow-900">
+              {food.FoodTitle}
+            </h3>
+            <p className="text-sm text-yellow-800 mb-2">
               Expires: {new Date(food.ExpiryDate).toLocaleDateString()}
             </p>
-            <span className="inline-block mt-2 text-xs bg-yellow-500 text-white px-2 py-1 rounded">
+            <span className="inline-block bg-yellow-600 text-white text-xs px-3 py-1 rounded-full font-semibold tracking-wide">
               Expiring Soon
             </span>
           </motion.div>
@@ -68,24 +70,35 @@ const ExtraSection = () => {
 
       {/* Section 2: Food Waste Statistics */}
       <motion.div
-        className="bg-blue-50 p-6 rounded-xl shadow-lg text-center"
-        initial={{ opacity: 0, scale: 0.8 }}
+        className="bg-blue-50 p-8 rounded-2xl shadow-xl text-center"
+        initial={{ opacity: 0, scale: 0.85 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-3xl font-bold mb-6">📊 Food Waste Statistics</h2>
-        <div className="flex justify-center gap-10 text-lg font-semibold">
-          <motion.div whileHover={{ scale: 1.1 }} className="text-blue-600">
+        <h2 className="text-4xl font-extrabold mb-8 text-blue-700 drop-shadow-md">
+          📊 Food Waste Statistics
+        </h2>
+        <div className="flex justify-center gap-12 text-xl font-semibold">
+          <motion.div
+            whileHover={{ scale: 1.15 }}
+            className="text-blue-600 cursor-default"
+          >
             <CountUp end={stats.total} duration={2} />
             <p>Total Foods</p>
           </motion.div>
 
-          <motion.div whileHover={{ scale: 1.1 }} className="text-red-600">
+          <motion.div
+            whileHover={{ scale: 1.15 }}
+            className="text-red-600 cursor-default"
+          >
             <CountUp end={stats.expire} duration={2} />
             <p>Expired Foods</p>
           </motion.div>
 
-          <motion.div whileHover={{ scale: 1.1 }} className="text-green-600">
+          <motion.div
+            whileHover={{ scale: 1.15 }}
+            className="text-green-600 cursor-default"
+          >
             <CountUp end={stats.safe} duration={2} />
             <p>Safe Foods</p>
           </motion.div>

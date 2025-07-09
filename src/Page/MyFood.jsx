@@ -88,33 +88,44 @@ const MyFood = () => {
 
   return (
     <>
-      <section className="w-11/12 md:w-10/12 mx-auto my-10 text-center space-y-2">
-        <h1 className="text-3xl md:text-4xl font-bold">My Food</h1>
+      <section className="w-11/12 md:w-10/12 mx-auto my-10 text-center space-y-3">
+        <h1 className="text-4xl font-bold text-gray-800 drop-shadow-lg">
+          🍽️ My Food Collection
+        </h1>
+        <p className="text-lg text-gray-500">
+          Keep track of what you love and manage it easily.
+        </p>
       </section>
 
-      <section className="w-11/12 md:w-10/12 mx-auto my-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <section className="w-11/12 md:w-10/12 mx-auto my-10 grid grid-cols-1 md:grid-cols-2 gap-8">
         {myFood.map((food) => (
           <div
             key={food._id}
-            className="w-full flex flex-col md:flex-row gap-5 items-center shadow-lg p-5 bg-[#F4F3F0] rounded-2xl"
+            className="bg-white rounded-2xl shadow-xl overflow-hidden transform hover:scale-[1.02] transition duration-300 flex flex-col md:flex-row items-center gap-6 p-6"
           >
-            <figure className="w-full md:w-[150px] p-3 md:p-5 shadow-2xl rounded-2xl">
+            <figure className="w-full md:w-48 rounded-xl overflow-hidden shadow-md">
               <img
-                className="w-full h-40 md:h-auto object-cover rounded-xl"
+                className="w-full h-44 object-cover"
                 src={food?.FoodImage}
-                alt="food"
+                alt={food?.FoodTitle}
               />
             </figure>
 
-            <div className="flex-1 space-y-1 text-center md:text-left text-black">
-              <h2 className="text-xl font-semibold">{food?.FoodTitle}</h2>
-              <p className="text-sm font-medium">Category: {food?.category}</p>
-              <p className="text-sm font-medium">Quantity: {food?.Quantity}</p>
+            <div className="flex-1 space-y-2 text-center md:text-left">
+              <h2 className="text-2xl font-semibold text-gray-800">
+                {food?.FoodTitle}
+              </h2>
+              <p className="text-sm text-gray-600">
+                Category: <span className="font-medium">{food?.category}</span>
+              </p>
+              <p className="text-sm text-gray-600">
+                Quantity: <span className="font-medium">{food?.Quantity}</span>
+              </p>
             </div>
 
-            <div className="flex gap-2 mt-3 md:mt-0">
+            <div className="flex flex-wrap gap-2 mt-4 md:mt-0">
               <Link to={`/fooddetails/${food._id}`}>
-                <button className="btn btn-sm md:btn-md">
+                <button className="p-2 rounded-lg shadow-md bg-blue-100 text-blue-600 hover:bg-blue-200 transition">
                   <FaEye size={18} />
                 </button>
               </Link>
@@ -124,30 +135,41 @@ const MyFood = () => {
                   setSelectedFood(food);
                   document.getElementById(`my_modal_${food._id}`).showModal();
                 }}
-                className="btn btn-sm md:btn-md"
+                className="p-2 rounded-lg shadow-md bg-green-100 text-green-600 hover:bg-green-200 transition"
               >
                 <FaEdit size={18} />
               </button>
 
+              <button
+                onClick={() => handleDelete(food._id)}
+                className="p-2 rounded-lg shadow-md bg-red-100 text-red-600 hover:bg-red-200 transition"
+              >
+                <MdDelete size={18} />
+              </button>
+
               <dialog id={`my_modal_${food._id}`} className="modal">
-                <div className="modal-box">
-                  <h1 className="text-3xl font-bold text-center mb-5">
-                    Edit My Food
+                <div className="modal-box rounded-2xl p-8">
+                  <h1 className="text-3xl font-bold text-center mb-6 text-gray-700">
+                    ✏️ Edit My Food
                   </h1>
                   <form onSubmit={(e) => handleUpdate(e, food._id)}>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <fieldset className="bg-base-200 border rounded-lg p-4">
-                        <label className="label font-bold">Food Title</label>
+                      <fieldset className="bg-gray-50 border rounded-lg p-4">
+                        <label className="label font-semibold">
+                          Food Title
+                        </label>
                         <input
                           type="text"
-                          className="input input-bordered w-full"
                           name="FoodTitle"
                           defaultValue={food?.FoodTitle}
+                          className="input input-bordered w-full"
                         />
                       </fieldset>
 
-                      <fieldset className="bg-base-200 border rounded-lg p-4">
-                        <label className="label font-bold">Food Image</label>
+                      <fieldset className="bg-gray-50 border rounded-lg p-4">
+                        <label className="label font-semibold">
+                          Food Image
+                        </label>
                         <input
                           type="url"
                           name="FoodImage"
@@ -156,8 +178,8 @@ const MyFood = () => {
                         />
                       </fieldset>
 
-                      <fieldset className="bg-base-200 border rounded-lg p-4">
-                        <label className="label font-bold">Quantity</label>
+                      <fieldset className="bg-gray-50 border rounded-lg p-4">
+                        <label className="label font-semibold">Quantity</label>
                         <input
                           type="text"
                           name="Quantity"
@@ -166,8 +188,10 @@ const MyFood = () => {
                         />
                       </fieldset>
 
-                      <fieldset className="bg-base-200 border rounded-lg p-4">
-                        <label className="label font-bold">Expiry Date</label>
+                      <fieldset className="bg-gray-50 border rounded-lg p-4">
+                        <label className="label font-semibold">
+                          Expiry Date
+                        </label>
                         <input
                           type="date"
                           name="ExpiryDate"
@@ -176,20 +200,21 @@ const MyFood = () => {
                         />
                       </fieldset>
 
-                      <fieldset className="bg-base-200 border border-base-300 rounded-lg p-4">
-                        <label className="label font-bold">User Email</label>
+                      <fieldset className="bg-gray-50 border rounded-lg p-4">
+                        <label className="label font-semibold">
+                          User Email
+                        </label>
                         <input
                           type="email"
-                          className="input input-bordered w-full"
                           name="email"
                           value={food?.email || ""}
                           readOnly
-                          placeholder="User Email"
+                          className="input input-bordered w-full"
                         />
                       </fieldset>
 
-                      <fieldset className="bg-base-200 border rounded-lg p-4">
-                        <label className="label font-bold">Category</label>
+                      <fieldset className="bg-gray-50 border rounded-lg p-4">
+                        <label className="label font-semibold">Category</label>
                         <select
                           name="category"
                           defaultValue={food?.category}
@@ -212,8 +237,10 @@ const MyFood = () => {
                         </select>
                       </fieldset>
 
-                      <fieldset className="bg-base-200 border rounded-lg p-4 md:col-span-2">
-                        <label className="label font-bold">Description</label>
+                      <fieldset className="bg-gray-50 border rounded-lg p-4 md:col-span-2">
+                        <label className="label font-semibold">
+                          Description
+                        </label>
                         <textarea
                           name="Description"
                           defaultValue={food?.Description}
@@ -226,21 +253,15 @@ const MyFood = () => {
                       type="submit"
                       className="btn btn-primary btn-block mt-6"
                     >
-                      Submit
+                      Save Changes
                     </button>
                   </form>
-                </div>
-                <form method="dialog" className="modal-backdrop">
-                  <button>Close</button>
-                </form>
-              </dialog>
 
-              <button
-                onClick={() => handleDelete(food._id)}
-                className="btn btn-sm md:btn-md"
-              >
-                <MdDelete size={18} />
-              </button>
+                  <form method="dialog" className="modal-backdrop">
+                    <button>Close</button>
+                  </form>
+                </div>
+              </dialog>
             </div>
           </div>
         ))}

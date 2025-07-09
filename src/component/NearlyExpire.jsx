@@ -33,43 +33,48 @@ const NearlyExpire = () => {
 
   return (
     <div>
-      <div className="w-11/12 md:w-10/12 mx-auto my-10">
-        <h1 className="text-3xl font-bold text-center mb-6">
+      <div className="w-11/12 md:w-10/12 mx-auto my-12">
+        <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-8 drop-shadow-lg">
           🕒 Nearly Expiring Foods
         </h1>
 
         {foods.length === 0 ? (
-          <p className="text-center text-gray-500">
+          <p className="text-center text-gray-500 text-lg italic">
             No nearly expiring foods found.
           </p>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {foods.map((food) => (
               <div
                 key={food._id}
-                className="bg-white p-4 rounded-xl shadow hover:shadow-lg transition border"
+                className="bg-white rounded-2xl shadow-xl border border-gray-200 p-5 transform hover:scale-[1.02] hover:shadow-2xl transition duration-300"
               >
                 <img
                   src={food?.FoodImage}
                   alt={food?.FoodTitle}
-                  className="w-full h-40 object-cover rounded-lg mb-4"
+                  className="w-full h-44 object-cover rounded-xl mb-4 shadow"
                 />
-                <h2 className="text-xl font-semibold">{food?.FoodTitle}</h2>
+                <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+                  {food?.FoodTitle}
+                </h2>
                 <p className="text-sm text-gray-600 mb-1">
-                  Category: {food?.category}
+                  <span className="font-medium">Category:</span>{" "}
+                  {food?.category}
                 </p>
                 <p className="text-sm text-gray-600 mb-1">
-                  Quantity: {food?.Quantity}
+                  <span className="font-medium">Quantity:</span>{" "}
+                  {food?.Quantity}
                 </p>
-                <p className="text-sm text-red-500 font-medium mb-2">
+                <p className="text-sm text-red-600 font-semibold mb-3">
                   <Countdown
                     date={new Date(food?.ExpiryDate)}
                     renderer={renderer}
                   />
                 </p>
+
                 <Link to={`/fooddetails/${food?._id}`}>
-                  <button className="px-3 py-1 rounded bg-blue-600 text-white hover:bg-blue-700 text-sm">
-                    See Details
+                  <button className="w-full bg-gradient-to-r from-blue-500 to-blue-700 text-white py-2 rounded-lg shadow-md hover:from-blue-600 hover:to-blue-800 transition duration-300">
+                    🔍 See Details
                   </button>
                 </Link>
               </div>

@@ -17,7 +17,7 @@ const MyProfile = () => {
     const email = User?.email;
     if (email) {
       const res = await axios.get(
-        `https://food-tracker-server-six.vercel.app/users?email=${email}`,
+        `https://food-tracker-server-six.vercel.app/myinfo?email=${email}`,
         {
           headers: { Authorization: `Bearer ${User?.accessToken}` },
         }

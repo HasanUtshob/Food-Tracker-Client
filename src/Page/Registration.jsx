@@ -1,5 +1,5 @@
 import React, { use, useState } from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -7,6 +7,8 @@ import Swal from "sweetalert2";
 const Registration = () => {
   const { handleRegister } = use(AuthContext);
   const [errorMassage, seterrorMassage] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
   const handleregform = (e) => {
     e.preventDefault();
 
@@ -28,6 +30,8 @@ const Registration = () => {
     handleRegister(email, password)
       .then((result) => {
         // send userinfo database
+        const from = location.state?.from?.pathname || "/";
+        navigate(from, { replace: true });
         const userInfo = {
           email,
           ...restFormData,
@@ -72,6 +76,7 @@ const Registration = () => {
                   type="text"
                   id="fullname"
                   name="name"
+                  placeholder="Enter Your Full name"
                 />
               </div>
               <div>
@@ -86,6 +91,7 @@ const Registration = () => {
                   type="email"
                   id="email"
                   name="email"
+                  placeholder="Enter Your Email"
                 />
               </div>
               <div>
@@ -100,6 +106,7 @@ const Registration = () => {
                   type="text"
                   id="photourl"
                   name="photo"
+                  placeholder="Enter your Photo Url"
                 />
               </div>
               <div>
@@ -114,6 +121,7 @@ const Registration = () => {
                   type="password"
                   id="password"
                   name="password"
+                  placeholder="Password"
                 />
                 <p className="text-red-500 text-sm">{errorMassage}</p>
               </div>

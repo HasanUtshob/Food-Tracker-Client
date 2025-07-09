@@ -9,13 +9,11 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
-import axios from "axios";
 
 const AuthProvider = ({ children }) => {
   const [User, setUser] = useState(null);
-
   const [loading, setloading] = useState(true);
-  const [userData, setuserData] = useState(null);
+
   // Register Section
   const handleRegister = (email, password) => {
     setloading(true);
@@ -53,25 +51,6 @@ const AuthProvider = ({ children }) => {
     setloading(true);
     return signOut(auth);
   };
-  // userData load
-
-  useEffect(() => {
-    const email = User?.email;
-    if (email) {
-      const loadData = async () => {
-        const res = await axios.get(
-          `https://food-tracker-server-six.vercel.app/users?email=${email}`,
-          {
-            headers: {
-              Authorization: `Bearer ${User?.accessToken}`,
-            },
-          }
-        );
-        setuserData(res.data[0]);
-      };
-      loadData();
-    }
-  }, [User]);
 
   const Info = {
     handleRegister,
@@ -81,7 +60,6 @@ const AuthProvider = ({ children }) => {
     User,
     setUser,
     SignOut,
-    userData,
     SignWithGoogle,
   };
   return <AuthContext value={Info}>{children}</AuthContext>;

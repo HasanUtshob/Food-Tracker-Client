@@ -1,12 +1,32 @@
 import { Link, NavLink } from "react-router";
 import { motion } from "motion/react";
-import { use } from "react";
+import { use, useEffect, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import Loading from "../component/Loading";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Navber = () => {
-  const { User, SignOut, userData, loading } = use(AuthContext);
+  const { User, SignOut, loading } = use(AuthContext);
+  const [userData, setuserData] = useState(null);
+
+  const fetchUserData = async () => {
+    const email = User?.email;
+    if (email) {
+      const res = await axios.get(
+        `https://food-tracker-server-six.vercel.app/users?email=${email}`,
+        {
+          headers: { Authorization: `Bearer ${User?.accessToken}` },
+        }
+      );
+      setuserData(res.data[0]);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, [User]);
+
   const handleSignOut = () => {
     SignOut().then(() => {
       Swal.fire({

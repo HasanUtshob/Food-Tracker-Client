@@ -21,38 +21,41 @@ const ExpiredFoods = () => {
   if (loading) return <Loading></Loading>;
 
   return (
-    <div className="w-11/12 md:w-10/12 mx-auto my-10">
-      <h1 className="text-3xl font-bold text-center mb-6">❌ Expired Foods</h1>
+    <div className="w-11/12 md:w-10/12 mx-auto my-12">
+      <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-8 drop-shadow-lg">
+        ❌ Expired Foods
+      </h1>
 
       {expireDate.length === 0 ? (
-        <p className="text-center text-gray-500">No expired foods found.</p>
+        <p className="text-center text-gray-500 text-lg italic">
+          No expired foods found.
+        </p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {expireDate.map((food) => (
             <div
               key={food._id}
-              className="bg-white p-4 rounded-xl shadow hover:shadow-lg border border-red-200 relative"
+              className="bg-white rounded-2xl shadow-xl border border-red-300 p-5 transform hover:scale-[1.02] hover:shadow-2xl transition duration-300 relative"
             >
               <img
                 src={food?.FoodImage}
                 alt={food?.FoodTitle}
-                className="w-full h-40 object-cover rounded-lg mb-4"
+                className="w-full h-44 object-cover rounded-xl mb-4 shadow"
               />
-              <h2 className="text-xl font-semibold">{food?.FoodTitle}</h2>
+              <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+                {food?.FoodTitle}
+              </h2>
               <p className="text-sm text-gray-600 mb-1">
-                Category: {food?.category}
+                <span className="font-medium">Category:</span> {food?.category}
               </p>
               <p className="text-sm text-gray-600 mb-1">
-                Quantity: {food?.Quantity}
+                <span className="font-medium">Quantity:</span> {food?.Quantity}
               </p>
-              <p className="text-sm text-gray-600 mb-1">
-                Expired on:{" "}
-                <span className="text-red-600 font-semibold">
-                  {new Date(food?.ExpiryDate).toLocaleDateString()}
-                </span>
+              <p className="text-sm text-red-600 font-semibold mb-3">
+                Expired on: {new Date(food?.ExpiryDate).toLocaleDateString()}
               </p>
 
-              <span className="absolute top-3 right-3 bg-red-500 text-white text-xs px-2 py-1 rounded">
+              <span className="absolute top-3 right-3 bg-red-600 text-white text-xs px-2 py-1 rounded shadow">
                 ❌ Expired
               </span>
             </div>
