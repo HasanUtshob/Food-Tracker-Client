@@ -14,10 +14,10 @@ const ExpiredFoods = () => {
       try {
         setLoading(true);
         
-        // Try multiple endpoints to get expired foods
+       
         let expiredData = [];
         
-        // First try the dedicated expired-foods endpoint
+        
         try {
           const res = await axios.get("http://localhost:3000/expired-foods");
           expiredData = res.data;
@@ -47,7 +47,7 @@ const ExpiredFoods = () => {
           }
         }
         
-        // Ensure we have valid expired foods
+      
         const now = new Date();
         const validExpiredFoods = expiredData.filter(food => {
           const expiryDate = new Date(food.ExpiryDate);
