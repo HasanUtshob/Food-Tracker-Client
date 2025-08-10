@@ -8,7 +8,7 @@ const Banner = () => {
   const slides = [
     {
       image: "https://i.ibb.co/6RCGyDkk/Variety-fruits-vegetables.webp",
-      title: "🥕 Root Vegetables & Tubers",
+      title: "🥕 Root Vegetables & Tuber",
       description:
         "Root vegetables and tubers grow underground and are rich in nutrients, fiber, and energy. Common examples include carrots, potatoes, sweet potatoes, radishes, turnips, yams, beets, taro, and parsnips. They are versatile, used in soups, stews, fries, and curries.",
     },
