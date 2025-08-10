@@ -10,6 +10,12 @@ import MyFood from "../Page/MyFood";
 import FoodDetails from "../Page/FoodDetails";
 import NotFound from "../Page/NotFound";
 import PrivateRoutes from "./PrivateRoutes";
+import DashboardLayout from "../Layout/DashboardLayout";
+import DashboardHome from "../Page/DashboardHome";
+import ContactUs from "../Page/ContactUs";
+import PrivacyInfo from "../Page/PrivacyInfo";
+import ServiceTerms from "../Page/ServiceTerms";
+import DataInfo from "../Page/DataInfo";
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +26,7 @@ export const router = createBrowserRouter([
         index: true,
         Component: Home,
       },
+
       {
         path: "*",
         Component: NotFound,
@@ -37,34 +44,27 @@ export const router = createBrowserRouter([
         Component: Fridge,
       },
       {
-        path: "/myprofile",
-        element: (
-          <PrivateRoutes>
-            <MyProfile></MyProfile>
-          </PrivateRoutes>
-        ),
+        path: "/ContactUs",
+        Component: ContactUs,
       },
       {
-        path: "/addfood",
-        element: (
-          <PrivateRoutes>
-            <AddFood></AddFood>
-          </PrivateRoutes>
-        ),
+        path: "/privacy-policy",
+        Component: PrivacyInfo,
       },
       {
-        path: "/myfood",
-        element: (
-          <PrivateRoutes>
-            <MyFood></MyFood>
-          </PrivateRoutes>
-        ),
+        path: "/terms-of-service",
+        Component: ServiceTerms,
       },
+      {
+        path: "/cookie-policy",
+        Component: DataInfo,
+      },
+
       {
         path: "/fooddetails/:id",
         loader: ({ params }) =>
           fetch(
-            `https://food-tracker-server-six.vercel.app/fooddetails/${params.id}`
+            `http://localhost:3000/fooddetails/${params.id}`
           ),
         element: (
           <PrivateRoutes>
@@ -74,4 +74,48 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+        path: "/dashboard",
+        element: <PrivateRoutes>
+          <DashboardLayout></DashboardLayout>
+        </PrivateRoutes>,
+        children: [
+
+          {
+            index:true,
+            element: <DashboardHome />
+          },
+          {
+            path: "/dashboard/home",
+            element: <DashboardHome />
+          },
+                {
+        path: "/dashboard/addfood",
+        element: (
+          <PrivateRoutes>
+            <AddFood></AddFood>
+          </PrivateRoutes>
+        ),
+      },      {
+        path: "/dashboard/myfood",
+        element: (
+          <PrivateRoutes>
+            <MyFood></MyFood>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/dashboard/myprofile",
+        element: (
+          <PrivateRoutes>
+            <MyProfile></MyProfile>
+          </PrivateRoutes>
+        ),
+      },
+
+
+        ]
+      },
+
+
 ]);

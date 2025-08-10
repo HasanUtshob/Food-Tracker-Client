@@ -42,7 +42,7 @@ const Registration = () => {
         };
 
         axios
-          .post("https://food-tracker-server-six.vercel.app/users", userInfo)
+          .post("http://localhost:3000/users", userInfo)
           .then((data) => {
             if (data.data.insertedId) {
               Swal.fire({

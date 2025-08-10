@@ -55,11 +55,11 @@ const Banner = () => {
 
               {/* 🧾 Overlay Content */}
               <div className="absolute inset-0 flex items-center justify-center px-4">
-                <div className="bg-base-100/90 p-6 border-4 border-amber-600 rounded-2xl max-w-xl text-center">
-                  <h2 className="text-xl md:text-4xl font-bold text-black mb-2 animate-fade-in-up">
+                <div className="bg-white/90 dark:bg-gray-800/90 p-6 border-4 border-amber-600 dark:border-amber-500 rounded-2xl max-w-xl text-center backdrop-blur-sm transition-colors duration-300">
+                  <h2 className="text-xl md:text-4xl font-bold text-black dark:text-white mb-2 animate-fade-in-up transition-colors duration-300">
                     {slide.title}
                   </h2>
-                  <p className="text-gray-500 font-medium text-sm md:text-lg animate-fade-in-up delay-200">
+                  <p className="text-gray-500 dark:text-gray-300 font-medium text-sm md:text-lg animate-fade-in-up delay-200 transition-colors duration-300">
                     {slide.description}
                   </p>
                 </div>
