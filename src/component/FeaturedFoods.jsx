@@ -55,7 +55,7 @@ const FeaturedFoods = () => {
     async function fetchFoods() {
       try {
         setLoading(true);
-        const res = await axios.get("http://localhost:3000/foods");
+        const res = await axios.get("https://food-tracker-server-six.vercel.app/foods");
         const valid = res.data.filter(food => new Date(food.ExpiryDate) > new Date());
         const shuffled = valid.sort(() => 0.5 - Math.random());
         setFeaturedFoods(shuffled.slice(0, 6));

@@ -19,7 +19,7 @@ const ExpiredFoods = () => {
         
         
         try {
-          const res = await axios.get("http://localhost:3000/expired-foods");
+          const res = await axios.get("https://food-tracker-server-six.vercel.app/expired-foods");
           expiredData = res.data;
         } catch (error) {
           console.log("Expired foods endpoint not available, trying alternatives...");
@@ -28,7 +28,7 @@ const ExpiredFoods = () => {
        
         if (expiredData.length === 0) {
           try {
-            const res = await axios.get("http://localhost:3000/nearly-expire");
+            const res = await axios.get("https://food-tracker-server-six.vercel.app/nearly-expire");
             const now = new Date();
             expiredData = res.data.filter(food => new Date(food.ExpiryDate) < now);
           } catch (error) {
@@ -39,7 +39,7 @@ const ExpiredFoods = () => {
      
         if (expiredData.length === 0) {
           try {
-            const res = await axios.get("http://localhost:3000/foods");
+            const res = await axios.get("https://food-tracker-server-six.vercel.app/foods");
             const now = new Date();
             expiredData = res.data.filter(food => new Date(food.ExpiryDate) < now);
           } catch (error) {

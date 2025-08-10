@@ -16,11 +16,11 @@ const ExtraSection = () => {
         setLoading(true);
         
         // Load Expiring Soon Foods (3 days)
-        const expiringRes = await axios.get("http://localhost:3000/expiring-soon");
+        const expiringRes = await axios.get("https://food-tracker-server-six.vercel.app/expiring-soon");
         setExpiringFoods(expiringRes.data);
 
         // Load Statistics
-        const statsRes = await axios.get("http://localhost:3000/food-stats");
+        const statsRes = await axios.get("https://food-tracker-server-six.vercel.app/food-stats");
         setStats(statsRes.data);
       } catch (error) {
         console.error("Error loading data:", error);

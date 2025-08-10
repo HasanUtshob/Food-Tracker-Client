@@ -40,7 +40,7 @@ const DashboardHome = () => {
 
       try {
         setLoading(true);
-        const response = await axios.get(`http://localhost:3000/myfoods?email=${User.email}`, {
+        const response = await axios.get(`https://food-tracker-server-six.vercel.app/myfoods?email=${User.email}`, {
           headers: {
             Authorization: `Bearer ${User.accessToken}`,
           },

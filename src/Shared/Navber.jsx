@@ -1,6 +1,5 @@
 import { Link, NavLink } from "react-router";
-// eslint-disable-next-line no-unused-vars
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { ThemeContext } from "../Context/ThemeContext";
@@ -39,21 +38,25 @@ const Navbar = () => {
 
   const fetchUserData = async () => {
     const email = User?.email;
-    if (email) {
-      try {
-        const res = await axios.get(
-          `http://localhost:3000/users?email=${email}`,
-          {
-            headers: { Authorization: `Bearer ${User?.accessToken}` },
-          }
-        );
-        setUserData(res.data[0]);
-      } catch (error) {
-        console.error("Failed to load user data:", error);
-      } finally {
-        setLoading(false);
-      }
-    } else {
+    if (!email) {
+      setUserData(null);
+      setLoading(false);
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const res = await axios.get(
+        `https://food-tracker-server-six.vercel.app/users?email=${email}`,
+        {
+          headers: { Authorization: `Bearer ${User?.accessToken}` },
+        }
+      );
+      setUserData(res.data[0]);
+    } catch (error) {
+      console.error("Failed to load user data:", error);
+      setUserData(null);
+    } finally {
       setLoading(false);
     }
   };
@@ -161,6 +164,21 @@ const Navbar = () => {
                 </NavLink>
               ))}
 
+              {User && (
+                <NavLink
+                  to="/dashboard"
+                  className={({ isActive }) =>
+                    `flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 font-medium ${
+                      isActive
+                        ? 'text-blue-600 bg-blue-50 dark:bg-blue-900/30 dark:text-blue-400 shadow-sm'
+                        : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800'
+                    }`
+                  }
+                >
+                  <FaTachometerAlt className="text-sm" />
+                  <span>Dashboard</span>
+                </NavLink>
+              )}
             </div>
 
             {/* Right Side Actions */}
@@ -311,7 +329,7 @@ const Navbar = () => {
                     <span>{item.label}</span>
                   </NavLink>
                 ))}
-                
+
                 {User && (
                   <NavLink
                     to="/dashboard"

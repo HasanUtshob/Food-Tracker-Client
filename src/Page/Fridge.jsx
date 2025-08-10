@@ -19,7 +19,7 @@ const Fridge = () => {
   useEffect(() => {
     const loadFood = async () => {
       setloading(true);
-      const res = await axios.get("http://localhost:3000/foods");
+      const res = await axios.get("https://food-tracker-server-six.vercel.app/foods");
       setresult(res.data);
       setloading(false);
     };
@@ -33,9 +33,9 @@ const Fridge = () => {
     e.preventDefault();
     setloading(true);
     const form = e.target.searchText.value;
-    const res = await axios.get(`http://localhost:3000/foods/search?q=${form}`);
+    const res = await axios.get(`https://food-tracker-server-six.vercel.app/foods/search?q=${form}`);
     setresult(res.data);
-    setCurrentPage(1); // Reset to first page after search
+    setCurrentPage(1); 
     setloading(false);
   };
 

@@ -60,7 +60,7 @@ const AddFood = () => {
     };
 
     try {
-      const response = await axios.post("http://localhost:3000/foods", foodData, {
+      const response = await axios.post("https://food-tracker-server-six.vercel.app/foods", foodData, {
         headers: {
           Authorization: `Bearer ${User?.accessToken}`,
         },

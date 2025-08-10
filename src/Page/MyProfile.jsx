@@ -52,7 +52,7 @@ const MyProfile = () => {
       try {
         setIsLoading(true);
         const res = await axios.get(
-          `http://localhost:3000/myinfo?email=${email}`,
+          `https://food-tracker-server-six.vercel.app/myinfo?email=${email}`,
           {
             headers: { Authorization: `Bearer ${User?.accessToken}` },
           }
@@ -79,7 +79,7 @@ const MyProfile = () => {
     try {
       setIsLoading(true);
       const { data } = await axios.put(
-        `http://localhost:3000/users/${id}`,
+        `https://food-tracker-server-six.vercel.app/users/${id}`,
         ProfileUpdate,
         {
           headers: { Authorization: `Bearer ${User?.accessToken}` },

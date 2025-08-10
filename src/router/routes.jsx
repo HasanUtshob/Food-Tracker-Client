@@ -64,7 +64,7 @@ export const router = createBrowserRouter([
         path: "/fooddetails/:id",
         loader: ({ params }) =>
           fetch(
-            `http://localhost:3000/fooddetails/${params.id}`
+            `https://food-tracker-server-six.vercel.app/fooddetails/${params.id}`
           ),
         element: (
           <PrivateRoutes>

@@ -12,7 +12,7 @@ const NearlyExpire = () => {
     const loadFood = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("http://localhost:3000/nearly-expire");
+        const res = await axios.get("https://food-tracker-server-six.vercel.app/nearly-expire");
         setFoods(res.data);
       } catch (error) {
         console.error("Error fetching nearly expired foods:", error);

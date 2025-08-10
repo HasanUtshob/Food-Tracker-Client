@@ -34,7 +34,7 @@ const FoodDetails = () => {
 
     axios
       .post(
-        `http://localhost:3000/fooddetails/${data._id}`,
+        `https://food-tracker-server-six.vercel.app/fooddetails/${data._id}`,
         form
       )
       .then(() => {

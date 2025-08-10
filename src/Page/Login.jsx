@@ -35,7 +35,7 @@ const Login = () => {
       };
 
       await axios.patch(
-        "http://localhost:3000/users",
+        "https://food-tracker-server-six.vercel.app/users",
         userInfo,
         {
           headers: {
@@ -67,7 +67,7 @@ const Login = () => {
         };
 
         axios.post(
-          "http://localhost:3000/users",
+          "https://food-tracker-server-six.vercel.app/users",
           userInfo,
           {
             headers: {
