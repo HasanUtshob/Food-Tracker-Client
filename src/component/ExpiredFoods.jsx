@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router";
-import { FaSkull, FaTrashAlt, FaExclamationCircle, FaUtensils, FaCalendarTimes, FaRecycle } from "react-icons/fa";
+import { FaSkull, FaExclamationCircle, FaUtensils, FaCalendarTimes, FaRecycle } from "react-icons/fa";
 
 const ExpiredFoods = () => {
   const [expiredFoods, setExpiredFoods] = useState([]);
@@ -25,7 +25,7 @@ const ExpiredFoods = () => {
           console.log("Expired foods endpoint not available, trying alternatives...");
         }
         
-        // If no data from expired endpoint, try nearly-expire and filter
+       
         if (expiredData.length === 0) {
           try {
             const res = await axios.get("http://localhost:3000/nearly-expire");
@@ -36,7 +36,7 @@ const ExpiredFoods = () => {
           }
         }
         
-        // If still no data, try the general foods endpoint and filter
+     
         if (expiredData.length === 0) {
           try {
             const res = await axios.get("http://localhost:3000/foods");
