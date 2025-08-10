@@ -68,7 +68,7 @@ const ExpiredFoods = () => {
     fetchExpiredFoods();
   }, []);
 
-  // Calculate how long ago the food expired
+
   const getExpiredDuration = (expiryDate) => {
     const now = new Date();
     const expired = new Date(expiryDate);
