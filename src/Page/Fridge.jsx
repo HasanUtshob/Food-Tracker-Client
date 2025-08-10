@@ -10,8 +10,8 @@ const Fridge = () => {
   const { loading, setloading, User } = use(AuthContext);
   const [result, setresult] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [sortOrder, setSortOrder] = useState("asc"); // asc or desc
-  const [sortBy, setSortBy] = useState("FoodTitle"); // FoodTitle, ExpiryDate, category
+  const [sortOrder, setSortOrder] = useState("asc");
+  const [sortBy, setSortBy] = useState("FoodTitle"); 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
 
