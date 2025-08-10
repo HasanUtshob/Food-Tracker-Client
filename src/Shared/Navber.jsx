@@ -160,22 +160,7 @@ const Navbar = () => {
                   <span>{item.label}</span>
                 </NavLink>
               ))}
-              
-              {User && (
-                <NavLink
-                  to="/dashboard"
-                  className={({ isActive }) =>
-                    `flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 font-medium ${
-                      isActive
-                        ? 'text-blue-600 bg-blue-50 dark:bg-blue-900/30 dark:text-blue-400 shadow-sm'
-                        : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800'
-                    }`
-                  }
-                >
-                  <FaTachometerAlt className="text-sm" />
-                  <span>Dashboard</span>
-                </NavLink>
-              )}
+
             </div>
 
             {/* Right Side Actions */}
